@@ -83,7 +83,7 @@ services:
       - traefik.http.routers.openproject.rule=Host(`op.codead.re`)
       - traefik.http.routers.openproject.tls.certresolver=cloudflare
       - traefik.docker.network=web
-      - traefik.tcp.services.msportal.loadbalancer.server.port=8080
+      - traefik.tcp.services.openproject.loadbalancer.server.port=8080
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080${OPENPROJECT_RAILS__RELATIVE__URL__ROOT:-}/health_checks/default"]
       interval: 10s

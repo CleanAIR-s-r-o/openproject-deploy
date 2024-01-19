@@ -1,6 +1,9 @@
 version: "3.7"
 
 networks:
+  web:
+    name: web
+    external: true
   frontend:
   backend:
 
@@ -60,6 +63,13 @@ services:
       - web
     networks:
       - frontend
+      - web
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.openproject.entrypoints=websecure
+      - traefik.http.routers.openproject.rule=Host(`op.codead.re`)
+      - traefik.http.routers.openproject.tls.certresolver=cloudflare
+      - traefik.docker.network=web   
 
   web:
     <<: *app
@@ -115,4 +125,3 @@ services:
     restart: on-failure
     networks:
       - backend
-

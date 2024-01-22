@@ -34,6 +34,7 @@ x-op-app: &app
 
 services:
   opdb:
+    user: "1000:1000"
     hostname: opdb
     image: postgres:13
     <<: *restart_policy
